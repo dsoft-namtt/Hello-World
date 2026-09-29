@@ -4,6 +4,7 @@ test("script.js logs 'Hello world' to the console", async () => {
   const proc = Bun.spawn(["bun", "script.js"], { stdout: "pipe" });
   const output = await new Response(proc.stdout).text();
 
+  expect(await proc.exited).toBe(0);
   expect(output.trim()).toBe("Hello world");
 });
 
